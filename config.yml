@@ -1,0 +1,20 @@
+development:
+  password: shptka_10ce40ef472ef329da609558209e209f
+  theme_id: "166461800766"
+  store: lbcoachingpartners.myshopify.com
+  ignore_files:
+  - config/settings_data.json
+  - templates/*.json
+  - config/settings_schema.json
+  - sections/*.json
+  - layout/theme.liquid
+production:
+  password: shptka_10ce40ef472ef329da609558209e209f
+  theme_id: "165987418430"
+  store: lbcoachingpartners.myshopify.com
+  ignore_files:
+  - config/settings_data.json
+  - templates/*.json
+  - config/settings_schema.json
+  - sections/*.json
+  - layout/theme.liquid
