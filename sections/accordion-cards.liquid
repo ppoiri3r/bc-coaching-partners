@@ -1,0 +1,119 @@
+{{ 'accordion-blocks.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'accordion-cards.js' | asset_url }}" defer="defer"></script>
+
+{% style %}
+  .section-accordion-blocks {
+    padding-top: {{ section.settings.padding_top | times: 1 | round: 0 | append: 'px' }}
+    ;
+    padding-bottom: {{ section.settings.padding_bottom | times: 1 | round: 0 | append: 'px' }}
+    ;
+  }
+{% endstyle %}
+<div class="section-accordion-blocks">
+  <div class="page-width">
+    {% if section.settings.title %}
+      <h2>{{ section.settings.title }}</h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="accordion-blocks-container">
+        {% for block in section.blocks %}
+          <div style="background-color:{{ block.settings.color_selection }};" class="itinerary-card i-card">
+          <a class="card-url" aria-label="{{ block.settings.card_title }}" href="{{ block.settings.link }}"></a>
+            <div class="image-container">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1500 | image_tag }}
+              {%- endif -%}
+            </div>
+            <div class="title-and-list">
+              <h3>{{ block.settings.card_title }}</h3>
+              {{ block.settings.information }}
+            </div>
+            {% if block.settings.ex_information != blank %}
+            <div class="info-and-icon">
+              <div class="expanded-info">
+                <p>{{ block.settings.ex_information }}</p>
+              </div>
+              <div class="expand-button">{% render 'icon-plus-sign' %}</div>
+            </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Accordion Cards",
+    "settings": [
+      {
+        "type": "range",
+        "label": "Padding Top",
+        "id": "padding_top",
+        "min": 0,
+        "default": 75,
+        "max": 100
+      }, {
+        "type": "range",
+        "label": "Padding Bottom",
+        "id": "padding_bottom",
+        "min": 0,
+        "default": 75,
+        "max": 100
+      }
+    ],
+    "blocks": [
+      {
+        "type": "column",
+        "name": "Accordion card",
+        "limit": 6,
+        "settings": [
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.multirow.blocks.row.settings.image.label"
+          },
+          {
+            "type": "text",
+            "label": "Card title",
+            "id": "card_title",
+            "default": "Lorem ipsum dolor sit amet consecteteur."
+          }, {
+            "type": "richtext",
+            "label": "Card description",
+            "id": "information",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ante elit, efficitur at massa viverra, pulvinar iaculis quam. Ut eget tincidunt nibh. Nullam ac metus nulla. Sed eu dui et erat efficitur tincidunt.</p>"
+          }, {
+            "type": "richtext",
+            "label": "Additional List Items",
+            "id": "ex_information",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ante elit, efficitur at massa viverra, pulvinar iaculis quam. Ut eget tincidunt nibh. Nullam ac metus nulla. Sed eu dui et erat efficitur tincidunt.</p>",
+            "info": "Make sure to format this as a bulleted list in order if you would like the checkmark icons to appear on the frontend."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Accordion Cards",
+        "category": "Custom Sections",
+        "blocks": [
+          {
+            "type": "column"
+          }, {
+            "type": "column"
+          }, {
+            "type": "column"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

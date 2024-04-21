@@ -1,0 +1,41 @@
+.marquee {
+  /* margin: 75px 0; */
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 50px;
+}
+
+.marquee-content {
+  display: flex;
+  animation: scrolling 40s 0s linear infinite;
+  -webkit-animation: scrolling 40s 0s linear infinite;
+  position: absolute;
+  flex-flow: row nowrap;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.marquee-content img {
+  max-height: 50px;
+  max-width: auto;
+  margin: 0 50px;
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@-webkit-keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

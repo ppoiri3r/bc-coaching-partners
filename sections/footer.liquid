@@ -148,8 +148,6 @@
                             height="{{ block.settings.image.height }}"
                           >
                         </div>
-                      {%- else -%}
-                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                       {%- endif -%}
                     </div>
                 {%- endcase -%}
@@ -177,7 +175,7 @@
                       id="NewsletterForm--{{ section.id }}"
                       type="email"
                       name="contact[email]"
-                      class="field__input"
+                      class="field__input newsletter-field__input"
                       value="{{ form.email }}"
                       aria-required="true"
                       autocorrect="off"
