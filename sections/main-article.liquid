@@ -7,7 +7,30 @@
         <div class="page-width page-width--narrow">
           {% render block %}
         </div>
-      {%- when 'featured_image' -%}
+
+      {%- when 'title' -%}
+        <header
+          class="page-width blog-post-header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <h1
+            class="article-template__title page-width--narrow center"
+            itemprop="headline"
+          >
+            {{ article.title | escape }}
+          </h1>
+          {%- if block.settings.blog_show_date -%}
+            <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
+              {{- article.published_at | time_tag: format: 'date' -}}
+            </span>
+          {%- endif -%}
+          {%- if block.settings.blog_show_author -%}
+            <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="name">{{ article.author }}</span>
+            </span>
+          {%- endif -%}
+
+        {%- when 'featured_image' -%}
         {%- if article.image -%}
           <div
             class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
@@ -16,9 +39,7 @@
             <div
               class="article-template__hero-{{ block.settings.image_height }} media"
               itemprop="image"
-              {% if block.settings.image_height == 'adapt' and article.image %}
-                style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
-              {% endif %}
+              
             >
               <img
                 srcset="
@@ -42,27 +63,12 @@
           </div>
         {%- endif -%}
 
-      {%- when 'title' -%}
-        <header
-          class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          <h1
-            class="article-template__title"
-            itemprop="headline"
-          >
-            {{ article.title | escape }}
-          </h1>
-          {%- if block.settings.blog_show_date -%}
-            <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
-              {{- article.published_at | time_tag: format: 'date' -}}
-            </span>
-          {%- endif -%}
-          {%- if block.settings.blog_show_author -%}
-            <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <span itemprop="name">{{ article.author }}</span>
-            </span>
-          {%- endif -%}
+          {%- when 'excerpt' -%}
+            {% if article.excerpt %}
+              <div class="page-width--medium center">
+                {{ article.excerpt }}
+              </div>
+            {% endif %}
         </header>
 
       {%- when 'content' -%}
@@ -367,6 +373,11 @@
           "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
         }
       ]
+    },
+    {
+      "type": "excerpt",
+      "name": "Excerpt",
+      "limit": 1
     },
     {
       "type": "content",

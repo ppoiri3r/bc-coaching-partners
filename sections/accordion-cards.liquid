@@ -47,6 +47,9 @@
 {% schema %}
   {
     "name": "Accordion Cards",
+    "disabled_on": {
+    "groups": ["header", "footer"]
+    },
     "settings": [
       {
         "type": "range",
@@ -55,7 +58,8 @@
         "min": 0,
         "default": 75,
         "max": 100
-      }, {
+      }, 
+      {
         "type": "range",
         "label": "Padding Bottom",
         "id": "padding_bottom",
