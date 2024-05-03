@@ -15,6 +15,7 @@
   flex-direction: column;
   height:100%;
   min-height: 380px;
+  background-color: white;
 }
 
 @media(max-width: 990px) {
@@ -53,6 +54,10 @@
   position: relative;
   cursor: pointer;
   border: none;
+}
+
+.section-accordion-blocks .accordion-blocks-container .i-card .info-and-icon h3 {
+  margin-top: 15px;
 }
 
 .section-accordion-blocks .accordion-blocks-container .i-card .info-and-icon .expand-button svg {
@@ -96,10 +101,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-.section-accordion-blocks .accordion-blocks-container .i-card .title-and-list h3 {
-  font-weight: bold;
 }
 
 .section-accordion-blocks .accordion-blocks-container .i-card ul {
@@ -148,13 +149,16 @@
   border-radius: 10px 10px 0px 0px;
 }
 
-.section-accordion-blocks .accordion-blocks-container .i-card .expanded-info li {
+.section-accordion-blocks .accordion-blocks-container .i-card .expanded-info li,
+ .section-accordion-blocks .accordion-blocks-container .i-card .title-and-list ul li {
   list-style-type: none;
   position: relative;
   padding-left: 10px;
 }
 
-.section-accordion-blocks .accordion-blocks-container .i-card .expanded-info li::before {
+.section-accordion-blocks .accordion-blocks-container .i-card .expanded-info li::before,
+.section-accordion-blocks .accordion-blocks-container .i-card .title-and-list ul li::before
+ {
   content: '';
   background-image: url(../assets/checkmark.png);
   background-size: contain;

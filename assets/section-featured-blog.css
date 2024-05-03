@@ -2,6 +2,18 @@
   height: 100%;
 }
 
+.blog {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+@media(max-width: 749px) {
+  .blog {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
 @media screen and (min-width: 990px) {
   .grid--1-col-desktop .article-card .card__content {
     text-align: center;
@@ -28,7 +40,14 @@
 
 @media screen and (max-width: 749px) {
   .blog__post.article {
+    width: calc(50% - 3rem - var(--grid-mobile-horizontal-spacing));
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .blog__post.article {
     width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
+    max-width: 100%;
   }
 }
 
