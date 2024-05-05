@@ -9,7 +9,7 @@
   min-width: 32.33%;
   border: 1px solid #0000001A;
   border-radius: 10px;
-  padding: 20px;
+  padding: 0px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -147,6 +147,14 @@
   height: 100%;
   width: 100%;
   border-radius: 10px 10px 0px 0px;
+}
+
+.section-accordion-blocks .accordion-blocks-container .i-card .title-and-list {
+  padding: 20px;
+}
+
+.section-accordion-blocks .accordion-blocks-container .i-card .title-and-list h3 {
+  margin-top: 0px;
 }
 
 .section-accordion-blocks .accordion-blocks-container .i-card .expanded-info li,
